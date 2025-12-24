@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Web Portfolio: Jasmita's Video Page</title>
+    <link rel="shortcut icon" href="C:\Users\Jasmi\Desktop\Jasmita\Portfolio_Jasmita\Images\favicon.png">
+    <style>
+    #buttons{
+        background-color: rgb(95, 215, 255);
+        padding: 10px 10px;
+        border-radius: 10px;
+        border: none;
+        font-size: 18px;
+        font-weight: 400;
+        cursor: pointer;
+        box-shadow: 0 0 5px cyan;   
+        margin-right: 20px;     
+    }
+
+    button:hover{
+        box-shadow: 0 0 5px cyan,
+        0 0 25px cyan, 0 0 50px cyan,
+        0 0 100px cyan, 0 0 150px cyan
+    }
+    </style>
+    <script>
+        // create a few global variables to be used later
+var video, speed, volume;
+
+function init() {
+  // initialize the player
+  // first, get the media element and assign it to the video variable
+  video = document.getElementById('myvideo');
+
+  // get the current playbackRate from the HTML5 media API
+  // range is 0 to very fast, with 1 being normal playback
+  speed = video.playbackRate;
+
+  // volume range is 0 to 1
+  // set it in the middle so we have room to move it with our buttons
+  volume = 0.5;
+  video.volume = volume;
+}
+
+function play() {
+  video.play();
+}
+
+function pause() {
+  video.pause();
+}
+
+function changeSpeed(direction) {
+  // direction is either 'up' (faster) or 'down' (slower)
+  if (direction == 'up') {
+    if (speed < 10) {
+      // increase playbackRate
+      speed = speed + 0.1;
+    }
+  }
+  else if (direction == 'down') {
+    if (speed > 0) {
+      // decrease playbackRate
+      speed = speed - 0.1;
+    }
+  }
+  // so far all we've done is change the value of our speed variable
+  // not let's assign it to the player
+  video.playbackRate = speed;
+}
+
+function changeVolume(direction) {
+  if (direction == 'up') {
+    // if not fully cranked yet, increase volume
+    if (volume < 0.9) {
+      volume = volume + 0.1;
+    }
+  }
+  else if (direction == 'down') {
+    // if not muted, decrease volume
+    if (volume > 0.1) {
+      volume = volume - 0.1;
+    }
+  }
+  // so far all we've done is change the value of our volume variable
+  // not let's assign it to the player
+  video.volume = volume;
+}
+
+// wait until the web page has finished loading, then run the init function
+window.onload = init;
+    </script>
+</head>
+<body>
+    <img src="C:\Users\Jasmi\Desktop\Jasmita\Portfolio_Jasmita\Images\MyBanner.jpg" alt ="Introducing Jasmita, the creator of this website!">
+ <h1>Web Portfolio: Video</h1>
+<main id="main">
+  <div id="skipnav">
+      <a href="#main">Skip to main content</a>
+   </div>
+<nav> 
+	<ul>
+        <li> <a href="index.html">Home</a></li>
+		<li> <a href="accessibility.html">Accessibility</a> </li>
+		<li> <a href="usability.html">Usability</a></li>
+		<li> <a href="graphics.html">Graphics</a> </li>
+		<li> <a href="javascript.html">Javascript</a> </li>
+		<li> <a href="tools.html">Tools</a></li>
+		<li> <a href="video.html">Video</a> </li>
+	</ul>
+</nav>
+
+   
+    <p>I don't have any mp4 or webm videos hence I have just linked a youtube video about HTML in the source src section and the videos aren't mine.</p>
+    <video id="myvideo" >
+      <source src="https://www.youtube.com/watch?v=UB1O30fR-EE&t=1s" type="video/mp4">
+      <source src="https://www.youtube.com/watch?v=HD13eq_Pmp8" type="video/webm">
+      <track src="WEBVTT_captions.vtt" kind="captions" srclang="en" default>
+    </video> 
+    <div id="button">
+        <button id="buttons" onclick="play()">Play</button>
+        <button id="buttons" onclick="pause()">Pause</button>
+        <button id="buttons" onclick="changeSpeed('up')">Faster</button>
+        <button id="buttons" onclick="changeSpeed('down')">Slower</button>
+        <button id="buttons" onclick="changeVolume('up')">Louder</button>
+        <button id="buttons"onclick="changeVolume('down')">Softer</button>
+      </div>
+    <p> 
+	<a href="https://www.youtube.com/watch?v=UB1O30fR-EE&t=1s">Sample of mp4 file</a> <br>	
+        <a href="https://www.youtube.com/watch?v=HD13eq_Pmp8">Sample of webm file</a> <br>	
+    </p>
+    
+
+</main>
+</body>
+</html>
